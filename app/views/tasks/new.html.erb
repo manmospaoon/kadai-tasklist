@@ -1,0 +1,20 @@
+<h1>タスク新規作成ページ</h1>
+
+<%= form_with(model: @task, local: true) do |f| %>
+<%# @task は controller の newアクション の @task を使用することを示す %>
+<%# local: true を抜かすと画面偏移しない通信になる %>
+
+<%= f.label :content, 'タスク' %>
+<%# <label for="task_content">メッセージ</label> #%>
+<%# フォームのid名と関連付けることで、クリックした際、構成部品をクリックしたのと同じ動作を得られる。 %>
+
+<%= f.text_field :content %>
+<%# <input type="text" name="task[content]" id="task_content"> %>
+ 
+
+<%= f.submit '投稿' %>
+
+<% end %>
+
+<%= link_to '一覧に戻る',tasks_path %>
+<%# index へ戻るリンク %>

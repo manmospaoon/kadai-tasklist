@@ -1,0 +1,17 @@
+<hi>
+  id:<%= @task.id %>のタスク詳細ページ
+</hi>
+
+<p>
+  <%= @task.content %> 
+</p>
+
+<%= link_to '一覧に戻る', tasks_path %>
+<%# showからindexへのリンク %>
+
+<%= link_to 'このタスクを編集する', edit_task_path(@task) %>
+<%# showからeditへのリンク　%>
+
+<%= link_to 'このタスクを削除する', @task, method: :delete, data: {confirm: '本当に削除してよろしいですか？'} %>
+<%# method => リンク時に使用するHTTPメソッド %>
+<%# data => javascriptを使用、確認の発生 %>
