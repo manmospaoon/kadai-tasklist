@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
-  #privateで定義したset_askを使用するため、before_actionでまとめる。
-  before_action :set_task,only[:show, :edit, :update, :destroy]
+  #privateで定義したset_taskを使用するため、before_actionでまとめる。
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
   
   def index
     @tasks = Task.all
@@ -52,7 +52,7 @@ class TasksController < ApplicationController
   end
   
   private
-  #これ以降に定義されたメソッドがアクショ��ではなく、クラス内のみ使用することを示す。
+  #これ以降に定義されたメソッドがアクション内ではなく、クラス内のみ使用することを示す。
   
   def set_task
     @task = Task.find(params[:id])
@@ -62,7 +62,7 @@ class TasksController < ApplicationController
   #Strong Parameter(セキュリティ対策)
   
   def task_params
-    params.require(:task).permit(:content)
+    params.require(:task).permit(:content, :status)
   end
   # params.require(:task) でTaskモデルのフォームからのデータだと示す。
   #permit(:content) で必要なカラムだけを選択。(content)

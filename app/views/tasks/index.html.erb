@@ -5,10 +5,16 @@
     
     <li>
       <%= link_to task.id, task %>
+
       <%= task.content %>
+      
+      <%= task.status %>
+      &gt;
     </li>
     <% end %>
 </ul>
+
+<%# &gt;は、>をHTMLで表示させる特殊文字 %>
 
 <%= link_to '新規タスクの投稿', new_task_path %>
 <%# new へのリンク %>    

@@ -4,15 +4,37 @@
 <%# @task は controller の newアクション の @task を使用することを示す %>
 <%# local: true を抜かすと画面偏移しない通信になる %>
 
+
+<% if @task.errors.any? %>
+
+  <div id = "error_explanation">
+    <ul>
+    <% @task.errors.full_messages.each do |msg| %>
+      <li>
+        <%= msg %>
+      </li>
+    <% end %>
+            
+    </ul>
+        
+  </div>
+<% end %>
+<%# エラー画面の表示 %>
+
 <%= f.label :content, 'タスク' %>
 <%# <label for="task_content">メッセージ</label> #%>
 <%# フォームのid名と関連付けることで、クリックした際、構成部品をクリックしたのと同じ動作を得られる。 %>
 
 <%= f.text_field :content %>
 <%# <input type="text" name="task[content]" id="task_content"> %>
+
+
+<%= f.label :status,'ステータス' %>
+
+<%= f.text_field :status %>
  
 
-<%= f.submit '投稿' %>
+<%= f.submit '投稿'%>
 
 <% end %>
 
