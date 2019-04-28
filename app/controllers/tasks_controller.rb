@@ -1,10 +1,13 @@
 class TasksController < ApplicationController
+  #privateで定義したset_askを使用するため、before_actionでまとめる。
+  before_action :set_task,only[:show, :edit, :update, :destroy]
+  
   def index
     @tasks = Task.all
   end 
   
   def show
-    @task = Task.find(params[:id])
+   set_task
   end
   
   def new
@@ -25,12 +28,12 @@ class TasksController < ApplicationController
   #radirect_to @task は、redirect_toの引数にモデルのインスタンスを渡すと、model_urlメソッドが組み込まれる。
 
   def edit
-    @task = Task.find(params[:id])
+    set_task
     
   end
   
   def update
-    @task = Task.find(params[:id])
+    set_task
     if @task.update(task_params)
       flash[:success] ='Task は正常に更新されました'
       redirect_to @task
@@ -41,7 +44,7 @@ class TasksController < ApplicationController
   end
   
   def destroy
-    @task = Task.find(params[:id])
+    set_task
     @task.destroy
     
     flash[:success] = 'Taskは正常に削除されました。'
@@ -49,7 +52,12 @@ class TasksController < ApplicationController
   end
   
   private
-  #これ以降に定義されたメソッドがアクションではなく、クラス内のみ使用することを示す。
+  #これ以降に定義されたメソッドがアクショ��ではなく、クラス内のみ使用することを示す。
+  
+  def set_task
+    @task = Task.find(params[:id])
+  end
+  
   
   #Strong Parameter(セキュリティ対策)
   
