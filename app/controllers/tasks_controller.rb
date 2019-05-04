@@ -1,11 +1,13 @@
 class TasksController < ApplicationController
-  before_action :require_user_logged_in
+  before_action :require_user_logged_in, only: [:show, :edit, :update, :destroy, :new]
   before_action :correct_user, only: [:show, :edit, :update, :destroy]
   #privateで定義したset_taskを使用するため、before_actionでまとめる。
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   
-  def index
-    @tasks = current_user.tasks.order(id: :desc).page(params[:page]).per(7)
+  def index 
+    if logged_in?
+      @tasks = current_user.tasks.order(id: :desc).page(params[:page]).per(7)
+    end
   end 
   
   def show
