@@ -53,4 +53,4 @@ production:
   pool: 5
   database: message-board_production
   username: message-board
-  password: <%= ENV['MESSAGE-BOARD_DATABASE_PASSWORD'] %>
+  password: <%= ENV['KADAI-TASKLIST_DATABASE_PASSWORD'] %>
