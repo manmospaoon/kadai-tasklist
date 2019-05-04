@@ -1,24 +1,28 @@
-<h1>タスク一覧</h1>
+<% if logged_in? %>
+  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+  <h1>タスク一覧</h1>
 
-<ul>
+  <ul>
     <% @tasks.each do |task| %>
-    
-    <li>
-      <%= link_to task.id, task %>
 
-      <%= task.content %>
-      
-      <%= task.status %>
-      &gt;
-    </li>
+      <li>
+        <%= link_to task.id, task %>
+         <%= task.content %>
+         &gt;
+        <%= task.status %>
+        <%# &gt;は、>をHTMLで表示させる特殊文字 %>
+      </li>
     <% end %>
-</ul>
+  </ul>
+   <%= paginate @tasks %>
 
-<%# &gt;は、>をHTMLで表示させる特殊文字 %>
 
-<%= link_to '新規タスクの投稿', new_task_path %>
-<%# new へのリンク %>    
+  <%= link_to '新規タスクの投稿', new_task_path %>
+  <%# new へのリンク %>    
+<% else %>
     
-
+  <h1>Welcome to the Tasklist</h1>
+  <%= link_to 'Sign up now!', signup_path %>
+<% end %>
     
   
